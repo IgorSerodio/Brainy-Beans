@@ -17,6 +17,7 @@ import com.bb.game.utils.Difficulty;
 import static com.bb.game.utils.Volume.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -86,7 +87,6 @@ public class ChimpGraphics extends MiniGameGraphics{
         bgmusic.setLooping(true);
 
         reset();
-        initializeButtons();
         setUpStage();
     }
     /*
@@ -133,7 +133,8 @@ public class ChimpGraphics extends MiniGameGraphics{
         getStage().addActor(this.chimp);
 
         for(Actor button: this.buttons){
-            getStage().addActor(button);
+            if(button!=null)
+                getStage().addActor(button);
         }
     }
     /*
@@ -144,183 +145,35 @@ public class ChimpGraphics extends MiniGameGraphics{
         if(this.buttons == null)
             this.buttons = new ArrayList<>();
 
-        List<Float> minXValues = getMinXValues();
-        List<Float> maxXValues = getMaxXValues();
-        List<Float> minYValues = getMinYValues();
-        List<Float> maxYValues = getMaxYValues();
+        if(!gameReset) {
+            for(int i = 0; i < 18; i++)
+                this.buttons.add(null);
 
-        float x;
-        float y;
+            for(int i = 0; i < this.logic.getButtons().size(); i++)
+                this.buttons.set(i, new ButtonNumber(i + 1, 0, 0));
+        }
 
-        for(int i = 0; i < this.logic.getButtons().size(); i++){
-            x = Constants.WORLD_WIDTH * (float)(minXValues.get(i) + Math.random() * (maxXValues.get(i) - minXValues.get(i)));
-            y = Constants.WORLD_HEIGHT * (float)(minYValues.get(i) + Math.random() * (maxYValues.get(i) - minYValues.get(i)));
+        Collections.shuffle(this.buttons);
 
-            if(!gameReset)
-                this.buttons.add(new ButtonNumber(this.logic.getButtons().get(i), x, y));
-            else
-                this.buttons.get(this.logic.getButtons().get(i)-1).changePosition(x,y);
+        for(int i = 0; i < 18; i++){
+            if(this.buttons.get(i) != null) {
+                float j;
+
+                if (i < 6)
+                    j = 0.20f;
+                else if (i < 12)
+                    j = 0.45f;
+                else
+                    j = 0.70f;
+
+                this.buttons.get(i).changePosition(Constants.WORLD_WIDTH*0.07f + Constants.WORLD_WIDTH*0.11f * (i % 6), Constants.WORLD_HEIGHT*j);
+            }
         }
 
         showButtons();
         gameReset = true;
     }
-    /*
-        Função que retorna uma lista com os valores mínimos de X possíveis
-        dentre intervalos selecionados onde o número pode aparecer.
-     */
-    private List<Float> getMinXValues() {
-        List<Float> minXValues = List.of(
-                0.03f,
-                0.13f,
-                0.24f,
-                0.35f,
-                0.46f,
-                0.57f,
-                0.03f,
-                0.13f,
-                0.24f,
-                0.35f,
-                0.46f,
-                0.57f,
-                0.03f,
-                0.13f,
-                0.24f,
-                0.35f,
-                0.46f,
-                0.57f
-        );
-        return minXValues;
-    }
-    /*
-        Função que retorna uma lista com os valores máximos de X possíveis
-        dentre intervalos selecionados onde o número pode aparecer.
-     */
-    private List<Float> getMaxXValues() {
-        List<Float> maxXValues = List.of(
-                0.12f,
-                0.23f,
-                0.34f,
-                0.45f,
-                0.56f,
-                0.67f,
-                0.12f,
-                0.23f,
-                0.34f,
-                0.45f,
-                0.56f,
-                0.67f,
-                0.12f,
-                0.23f,
-                0.34f,
-                0.45f,
-                0.56f,
-                0.67f
-        );
-        return maxXValues;
-    }
-    /*
-        Função que retorna uma lista com os valores mínimos de Y possíveis
-        dentre intervalos selecionados onde o número pode aparecer.
-     */
-    private List<Float> getMinYValues() {
-        List<Float> minYValues;
-        if(this.logic.getDifficulty() == 0 || this.logic.getDifficulty() == 1) {
-            minYValues = List.of(
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.42f,
-                    0.42f,
-                    0.42f,
-                    0.42f,
-                    0.42f,
-                    0.42f
-            );
-        }
-        else {
-            minYValues = List.of(
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.15f,
-                    0.28f,
-                    0.28f,
-                    0.28f,
-                    0.28f,
-                    0.28f,
-                    0.28f,
-                    0.55f,
-                    0.55f,
-                    0.55f,
-                    0.55f,
-                    0.55f,
-                    0.55f
-            );
-        }
-        return minYValues;
-    }
-    /*
-        Função que retorna uma lista com os valores máximos de Y possíveis
-        dentre intervalos selecionados onde o número pode aparecer.
-     */
-    private List<Float> getMaxYValues() {
-        List<Float> maxYValues;
-        if(this.logic.getDifficulty() == 0) {
-            maxYValues = List.of(
-                    0.82f,
-                    0.82f,
-                    0.82f,
-                    0.82f,
-                    0.82f,
-                    0.82f
-            );
-        }
-        else if(this.logic.getDifficulty() == 1) {
-            maxYValues = List.of(
-                    0.41f,
-                    0.41f,
-                    0.41f,
-                    0.41f,
-                    0.41f,
-                    0.41f,
-                    0.82f,
-                    0.82f,
-                    0.82f,
-                    0.82f,
-                    0.82f,
-                    0.82f
-            );
-        }
-        else {
-            maxYValues = List.of(
-                    0.27f,
-                    0.27f,
-                    0.27f,
-                    0.27f,
-                    0.27f,
-                    0.27f,
-                    0.54f,
-                    0.54f,
-                    0.54f,
-                    0.54f,
-                    0.54f,
-                    0.54f,
-                    0.81f,
-                    0.81f,
-                    0.81f,
-                    0.81f,
-                    0.81f,
-                    0.81f
-            );
-        }
-        return maxYValues;
-    }
+
     /*
         Metodo responsável por identificar a tentativa do botão feita
         pelo jogador.
@@ -363,7 +216,8 @@ public class ChimpGraphics extends MiniGameGraphics{
      */
     private void hideButtons() {
         for(ButtonNumber button : this.buttons) {
-            button.hide();
+            if(button!=null)
+                button.hide();
         }
     }
     /*
@@ -372,7 +226,8 @@ public class ChimpGraphics extends MiniGameGraphics{
      */
     private void showButtons() {
         for(ButtonNumber button : this.buttons) {
-            button.show();
+            if(button!=null)
+                button.show();
         }
     }
 

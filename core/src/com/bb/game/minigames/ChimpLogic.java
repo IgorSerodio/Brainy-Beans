@@ -72,13 +72,13 @@ public class ChimpLogic {
                 this.difficulty = 0;
                 break;
             case MEDIUM:
-                this.buttons = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+                this.buttons = Arrays.asList(1,2,3,4,5,6,7,8);
                 Collections.shuffle(this.buttons);
                 this.pointsLostPerSec = 100;
                 this.difficulty = 1;
                 break;
             case HARD:
-                this.buttons = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);
+                this.buttons = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
                 Collections.shuffle(this.buttons);
                 this.pointsLostPerSec = 50;
                 this.difficulty = 2;

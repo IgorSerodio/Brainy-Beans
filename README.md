@@ -1,6 +1,3 @@
-# Projeto de Engenharia de Software - Período 2021.2
-Repositório dedicado ao projeto da disciplina Engenharia de Software, do periodo 2021.2
-
 # Equipe
 
 Este projeto foi realizado por:
@@ -69,13 +66,3 @@ O objetivo deste mini-jogo é clicar rapidamente nos alvos que aparecem na tela,
 
 
 Neste mini-jogo o jogador precisa memorizar a sequência de personagens que aparecem iluminados na tela, clicando em cada um deles em ordem logo após.
-
-# Documentos
-
-Atas, cronogramas, divisão de atividades fichamentos e a documentação do projeto se encontram [neste repositório](https://github.com/Odyjmm/Projeto-ES-2022-Documentos).
-
-# Projeto real
-
-O projeto real escolhido é uma adaptação da engine de xadrez CuckooChess 1.12, com suporte a maven e uma interface gráfica para representar o tabuleiro de xadrez. O programa é capaz de analisar uma determinada posição e sugerir o próximo melhor movimento, assim como oferece a possibilidade de desafiar a IA.
-
-[Repositório](https://github.com/sauce-code/cuckoo).

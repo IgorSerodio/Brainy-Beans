@@ -45,6 +45,8 @@ public class ButtonNumber extends Actor{
     private final float NORMAL_SCALE = 1f;
     private static final Texture backgroundFace = new Texture("chimp\\button.png");
     private static final Texture emptyFace = new Texture("chimp\\emptyFace.png");
+    private final float B_WIDTH = 0.06f * Constants.WORLD_WIDTH;
+    private final float B_HEIGHT = 0.12f * Constants.WORLD_HEIGHT;
 
     /*
         Mapa que guarda o número de cada botão.
@@ -80,17 +82,17 @@ public class ButtonNumber extends Actor{
         this.id = id;
         this.hidden = false;
         this.empty = false;
-        this.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
+        this.setBounds(x - B_WIDTH * 0.1f, y - B_HEIGHT* 0.1f, B_WIDTH * 1.2f, B_HEIGHT * 1.2f);
         this.setTouchable(Touchable.enabled);
 
         this.emptyButton = new Sprite(emptyFace);
-        this.emptyButton.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
+        this.emptyButton.setBounds(x, y, B_WIDTH, B_HEIGHT);
         this.hiddenButton = new Sprite(backgroundFace);
-        this.hiddenButton.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
+        this.hiddenButton.setBounds(x - B_WIDTH * 0.1f, y - B_HEIGHT* 0.1f, B_WIDTH * 1.2f, B_HEIGHT * 1.2f);
         this.visibleButton = new Sprite(buttonMap.get(this.id));
-        this.visibleButton.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
+        this.visibleButton.setBounds(x, y, B_WIDTH, B_HEIGHT);
         this.backgroundButton = new Sprite(backgroundFace);
-        this.backgroundButton.setBounds(x,y,Constants.WORLD_WIDTH * 0.02f,Constants.WORLD_HEIGHT * 0.06f);
+        this.backgroundButton.setBounds(x - B_WIDTH * 0.1f, y - B_HEIGHT* 0.1f, B_WIDTH * 1.2f, B_HEIGHT * 1.2f);
 
         addListener(new InputListener(){
             @Override
@@ -136,11 +138,11 @@ public class ButtonNumber extends Actor{
     }
 
     public void changePosition(float x, float y) {
-        this.setBounds(x - Constants.WORLD_WIDTH * 0.0075f, y - Constants.WORLD_HEIGHT * 0.008f, Constants.WORLD_WIDTH * 0.035f, Constants.WORLD_HEIGHT * 0.08f);
-        this.emptyButton.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
-        this.hiddenButton.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
-        this.visibleButton.setBounds(x, y, Constants.WORLD_WIDTH * 0.02f, Constants.WORLD_HEIGHT * 0.06f);
-        this.backgroundButton.setBounds(x - Constants.WORLD_WIDTH * 0.005f, y - Constants.WORLD_HEIGHT * 0.008f, Constants.WORLD_WIDTH * 0.03f, Constants.WORLD_HEIGHT * 0.08f);
+        this.setBounds(x - B_WIDTH * 0.1f, y - B_HEIGHT* 0.1f, B_WIDTH * 1.2f, B_HEIGHT * 1.2f);
+        this.emptyButton.setBounds(x, y, B_WIDTH, B_HEIGHT);
+        this.hiddenButton.setBounds(x - B_WIDTH * 0.1f, y - B_HEIGHT* 0.1f, B_WIDTH * 1.2f, B_HEIGHT * 1.2f);
+        this.visibleButton.setBounds(x, y, B_WIDTH, B_HEIGHT);
+        this.backgroundButton.setBounds(x - B_WIDTH * 0.1f, y - B_HEIGHT* 0.1f, B_WIDTH * 1.2f, B_HEIGHT * 1.2f);
     }
 
     public int getId() {
