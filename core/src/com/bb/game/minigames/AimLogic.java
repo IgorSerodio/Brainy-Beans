@@ -8,23 +8,23 @@ public class AimLogic {
     private float radius;
     private int pointsLostForDistance;
 
-    private final int maxPoints = 100;
-    private final int minPoints = 20;
+    private final int maxPoints = 500;
+    private final int minPoints = 100;
 
     public AimLogic(Difficulty difficulty){
 
         switch (difficulty){
             case EASY:
                 this.radius = Constants.WORLD_WIDTH * 0.06f;
-                this.pointsLostForDistance = 1;
+                this.pointsLostForDistance = 5;
                 break;
             case MEDIUM:
                 this.radius = Constants.WORLD_WIDTH * 0.045f;
-                this.pointsLostForDistance = 2;
+                this.pointsLostForDistance = 10;
                 break;
             case HARD:
                 this.radius = Constants.WORLD_WIDTH * 0.035f;
-                this.pointsLostForDistance = 3;
+                this.pointsLostForDistance = 15;
                 break;
             default:
                 throw new IllegalStateException();
