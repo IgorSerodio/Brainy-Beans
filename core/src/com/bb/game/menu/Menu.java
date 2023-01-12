@@ -9,12 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bb.game.BrainyBeansGraphics;
 import com.bb.game.GameManager;
-import com.bb.game.RankingScreen;
-import com.bb.game.ScoreScreen;
+import com.bb.game.score.RankingScreen;
 import com.bb.game.utils.Constants;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Menu extends BrainyBeansGraphics {
 
@@ -26,7 +22,6 @@ public class Menu extends BrainyBeansGraphics {
     private Actor aboutButton;
     private Actor background_1;
     private Actor background_2;
-    private List<Integer> ranking;
 
     private static final Texture backgroundTexture = new Texture("menu\\bb_bg.png");
     private static final Texture logoTexture = new Texture("menu\\bb_logo.png");
@@ -35,7 +30,6 @@ public class Menu extends BrainyBeansGraphics {
 
     public Menu(Game game) {
         this.game = game;
-        this.ranking = new ArrayList<>();
         this.playButton = new Button("play", Constants.WORLD_WIDTH * 0.05f, Constants.WORLD_HEIGHT * 0.7f, Constants.WORLD_WIDTH * 0.36f, Constants.WORLD_HEIGHT * 0.18f);
         this.rankingButton = new Button("ranking", Constants.WORLD_WIDTH * 0.05f, Constants.WORLD_HEIGHT * 0.5f, Constants.WORLD_WIDTH * 0.36f, Constants.WORLD_HEIGHT * 0.18f);
         this.settingsButton = new Button("settings", Constants.WORLD_WIDTH * 0.05f, Constants.WORLD_HEIGHT * 0.3f, Constants.WORLD_WIDTH * 0.36f, Constants.WORLD_HEIGHT * 0.18f);
@@ -78,10 +72,9 @@ public class Menu extends BrainyBeansGraphics {
             case "play":
                 GameManager gm = new GameManager(game);
                 gm.playGame();
-                this.ranking = gm.getRanking();
                 break;
             case "ranking":
-                RankingScreen rs = new RankingScreen(ranking, game);
+                RankingScreen rs = new RankingScreen(game);
                 this.game.setScreen(rs);
                 break;
             case "settings":

@@ -2,16 +2,14 @@ package com.bb.game;
 
 import com.badlogic.gdx.Game;
 import com.bb.game.animations.Transition;
-import com.bb.game.menu.Menu;
+import com.bb.game.score.ScoreScreen;
 import com.bb.game.utils.Difficulty;
 import com.bb.game.minigames.MiniGameFactory;
 import com.bb.game.minigames.MiniGameGraphics;
-import com.bb.game.utils.Volume;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 
