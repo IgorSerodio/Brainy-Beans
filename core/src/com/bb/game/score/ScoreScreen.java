@@ -27,6 +27,7 @@ public class ScoreScreen extends BrainyBeansGraphics {
 
     private static final Texture backgroundTexture = new Texture("animations\\background.png");
     private static final Texture effectsTexture = new Texture("animations\\effects.png");
+    private static final Preferences ranking = Gdx.app.getPreferences("ranking");
 
     public ScoreScreen(int score, Game game){
         this.game = game;
@@ -54,7 +55,6 @@ public class ScoreScreen extends BrainyBeansGraphics {
     }
 
     private void saveScores(ArrayList<String> scoreList) {
-        Preferences ranking = Gdx.app.getPreferences("Ranking");
         for(Integer i = 1; i<11; i++){
             System.out.println(scoreList.get(i-1));
             if(scoreList.get(i-1) != null){
@@ -66,7 +66,6 @@ public class ScoreScreen extends BrainyBeansGraphics {
 
     private ArrayList<String> getScores(){
         ArrayList<String> scores = new ArrayList<>();
-        Preferences ranking = Gdx.app.getPreferences("Ranking");
         for(Integer i = 1; i<11; i++){
             scores.add(ranking.getString(i.toString(), null));
         }
